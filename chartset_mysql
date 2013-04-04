@@ -1,0 +1,7 @@
+    //mysql_query("SET NAMES utf8");
+    /*
+        La instrucción mysql_query reemplaza el uso de esta tres líneas
+        SET character_set_client = 'UTF8';
+        SET character_set_results = 'UTF8';
+        SET character_set_connection = 'UTF8';
+    */
