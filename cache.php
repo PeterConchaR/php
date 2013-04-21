@@ -1,4 +1,4 @@
-//Les dejare una función en php la cual agrega la fecha y hora de la ultima modificación de nuestro archivo.
+//Función en php la cual agrega la fecha y hora de la ultima modificación de nuestro archivo.
 
 function last_version ($file_name)
 { 
