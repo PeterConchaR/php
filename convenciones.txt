@@ -1,0 +1,222 @@
+PSR-0
+Este es el primero de los estándares y nos especifica las siguientes reglas:
+
+Puntos Obligatorios
+
+Los namespaces y las clases deben tener la siguiente estructura \<Vendor name>\(<Namespace>)*<Class Name>
+Cada namespace debe tener un namespace superior ("Vendor name").
+Cada namespace puede tener tantos sub-namespaces como se quiera.
+Los nombres de los namespaces o clases deben ser separados por un guion bajo (_).
+Todos los archivos deben tener la extensión .php.
+Los nombres de los namespaces o clases deben ser ordenadas alfabéticamente.
+
+Ejemplos:
+
+\Doctrine\Common\IsolatedClassLoader => /path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php
+\Symfony\Core\Request => /path/to/project/lib/vendor/Symfony/Core/Request.php
+\Zend\Acl => /path/to/project/lib/vendor/Zend/Acl.php
+\Zend\Mail\Message => /path/to/project/lib/vendor/Zend/Mail/Message.php
+ 
+//Con guiones bajos
+\namespace\package\Class_Name => /path/to/project/lib/vendor/namespace/package/Class/Name.php
+\namespace\package_name\Class_Name => /path/to/project/lib/vendor/namespace/package_name/Class/Name.php
+
+
+PSR-1, PSR-2 y PSR3
+Convenciones
+
+Los archivos deben utilizar solamente <?php y las short tags <?=
+Los archivos sólo deben utilizar una codificación UTF-8.
+Las funciones sólo deben retornar un sólo valor.
+Los nombres de espacio y las clases deben seguir las reglas del PSR-0.
+Los nombres de clases deben ser escritas utilizando la técnica StudlyCaps.
+Las constantes deben ser definidas en MAYÚSCULAS y utilizando guion bajo (_) cómo separador.
+Métodos y funciones deben ser escritos utilizando la técnica camelCase.
+Debemos de validar que la función que vamos a crear no exista utilizando la función function_exists().
+Las llaves deben de estar abajo sólamente en las clases y métodos.
+La identación debe ser con un tabulador establecido a 4 espacios.
+Las constantes true, false y null deben ser escritos en minúsculas.
+El número de caracteres por línea deben ser de 80 columnas aunque también esta aceptado que sean hasta 120.
+Ya no debes utilizar la palabra reservada var para declarar una propiedad, debes utilizar public, private, static o protected.
+Debe haber un espacio después de cada estructura de control (if, for, foreach, while, switch, try...catch, etc.).
+
+Ejemplos:
+//Classes
+class Class_Name
+{
+    //Constants
+    const VERSION = '1.0';
+    const DATE_APPROVED = '2012-06-01';
+ 
+    //Methods
+    public function getResults()
+    {
+        //...
+    }
+}
+ 
+//Functions
+if (!function_exists('bar')) {
+    function bar()
+    {
+        // function body
+    }
+}
+ 
+//Control structure...
+$a = 1;
+$b = 2;
+ 
+if ($a > $b) {
+    echo "$a is bigger than $b";
+} else {
+    echo "$b is bigger than $a";
+}
+ 
+for ($i = 0; $i <= 10; $i++) {
+    echo $i;
+}
+ 
+switch ($value) {
+    case "value1":
+        echo "Value 1";
+        break;
+    case "value2":
+        echo "Value 2";
+        break;
+    default:
+        echo "Value 3";
+}
+ 
+try {
+    // try body
+} catch (FirstExceptionType $e) {
+    // catch body
+} catch (OtherExceptionType $e) {
+    // catch body
+}
+ 
+//Closures
+$closureWithArgs = function ($arg1, $arg2) {
+    // body
+};
+ 
+$closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
+    // body
+};
+
+La documentación en los códigos debe ser cómo el siguiente código:
+
+ <?php
+namespace Psr\Log;
+ 
+/**
+ * Describes a logger instance
+ *
+ * The message MUST be a string or object implementing __toString().
+ *
+ * The message MAY contain placeholders in the form: {foo} where foo
+ * will be replaced by the context data in key "foo".
+ *
+ * The context array can contain arbitrary data, the only assumption that
+ * can be made by implementors is that if an Exception instance is given
+ * to produce a stack trace, it MUST be in a key named "exception".
+ *
+ * See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+ * for the full interface specification.
+ */
+interface LoggerInterface
+{
+    /**
+     * System is unusable.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function emergency($message, array $context = array());
+ 
+    /**
+     * Action must be taken immediately.
+     *
+     * Example: Entire website down, database unavailable, etc. This should
+     * trigger the SMS alerts and wake you up.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function alert($message, array $context = array());
+ 
+    /**
+     * Critical conditions.
+     *
+     * Example: Application component unavailable, unexpected exception.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function critical($message, array $context = array());
+ 
+    /**
+     * Runtime errors that do not require immediate action but should typically
+     * be logged and monitored.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function error($message, array $context = array());
+ 
+    /**
+     * Exceptional occurrences that are not errors.
+     *
+     * Example: Use of deprecated APIs, poor use of an API, undesirable things
+     * that are not necessarily wrong.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function warning($message, array $context = array());
+ 
+    /**
+     * Normal but significant events.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function notice($message, array $context = array());
+ 
+    /**
+     * Interesting events.
+     *
+     * Example: User logs in, SQL logs.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function info($message, array $context = array());
+ 
+    /**
+     * Detailed debug information.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function debug($message, array $context = array());
+ 
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function log($level, $message, array $context = array());
+} 
