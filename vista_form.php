@@ -11,4 +11,5 @@
     <div><label>Mensaje:</label><textarea rows='6' class='mensaje'><?php echo $_POST['mensaje']; ?></textarea>
     <?php echo $errors[4]; ?></div>
     <div><input type='submit' value='Envia Mensaje' class='boton'></div>
+     <?php echo $result; ?>
 </form>
