@@ -1,5 +1,5 @@
 <?php
-  // De este modo se deberia evitar enviar valores hidden para validar el post hecho
+  // De este modo se deberia evitar enviar valores hidden para validar el post hecho y validamos el envio de los datos
     if(isset($_POST['boton'])){
         $errors = array(); // declaramos un array para almacenar los errores
         if($_POST['nombre'] == ''){
