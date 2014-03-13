@@ -1,0 +1,3 @@
+<?php
+  strip_tag(); //Elimina tags html y php
+?>
