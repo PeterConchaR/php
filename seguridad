@@ -1,3 +1,16 @@
 <?php
   strip_tag(); //Elimina tags html y php
+  
+  //Para barrer todos los GET y POST
+  $input_arr = array(); 
+  foreach ($_POST as $key => $input_arr) 
+  { 
+  	$_POST[$key] = addslashes(limpiarCadena($input_arr)); 
+  }
+   
+  $input_arr = array(); 
+  foreach ($_GET as $key => $input_arr) 
+  { 
+  	$_GET[$key] = addslashes(limpiarCadena($input_arr)); 
+  }
 ?>
